@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 白色按钮点击变深背景 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+			<solid android:color="#f2f0f0"/>
+            <corners android:radius="4dp"/>
+            <stroke android:width="0.5dp"
+                    android:color="@color/line_color"/>
+		</shape>
+    </item>
+    
+    <item android:state_pressed="false">
+        <shape  android:shape="rectangle">
+			<solid android:color="@android:color/white"/>
+            <corners android:radius="4dp"/>
+            <stroke android:width="0.5dp"
+                    android:color="@color/line_color"/>
+		</shape>
+    </item>
+
+</selector>

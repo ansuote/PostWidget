@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="gray_text">#A4A4A4</color>
+
+    <color name="ll_bg">#ececec</color>
+    <color name="line_color">#d2d2d1</color>
+
+    <color name="background_color5">#F3F3F3</color>
+
+    <color name="share_btn_color_normal">#037BFA</color>
+
+
+</resources>

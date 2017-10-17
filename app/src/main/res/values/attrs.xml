@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="background" format="reference"/>
+    <attr name="textColor" format="color"/>
+    <attr name="maxLength" format="integer"/>
+    <attr name="padding" format="dimension"/>
+    <attr name="textColorHint" format="color"/>
+    <attr name="textSize" format="dimension"/>
+
+    <declare-styleable name="PostAddImageView" >
+        <attr name="background"/>
+        <attr name="padding"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+
+    <string name="all_done">Done</string>
+    <string name="all_all">All</string>
+    <string name="all_preview">Preview</string>
+    <string name="all_choose">Choose</string>
+    <string name="all_delete">Delete</string>
+    <string name="all_close">Close</string>
+
+
+    <string name="app_name">PostWidget</string>
+    <string name="btn_choose_photo_done">Done(%1$d/%2$d)</string>
+    <string name="choose_photo_count">%1$d/%2$d</string>
+    <string name="choose_photo_all_picture_dir">All</string>
+    <string name="over_max_choose_count">The picture more than the maximum number</string>
+
+    <string name="all_share">Share</string>
+    <string name="all_cancel">Cancel</string>
+    <string name="new_post_title">New Post</string>
+    <string name="new_post_hint">Write a caption</string>
+
+    <string name="open_post">Open Post</string>
+    <string name="choose_form_album">Choose from Album</string>
+    <string name="take_photo">take a photo</string>
+    <string name="dialog_delete_photo">Delete?</string>
+    <string name="dialog_exit">Are you sure you want to quit？</string>
+    <string name="out_storage_unused">External storage is not available</string>
+    <string name="choose_photo_thoast">Please select at least one picture</string>
+
+</resources>

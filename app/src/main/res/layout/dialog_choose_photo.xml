@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@null"
+              android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_take_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/btn_choose_photo_dialog_selector"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/take_photo"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Theme.AppCompat"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/btn_choose_photo_from_album"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/btn_choose_photo_dialog_selector"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/choose_form_album"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Theme.AppCompat"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_choose_photo_dialog_selector"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/all_cancel"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Theme.AppCompat"
+        android:textSize="14sp"/>
+
+</LinearLayout>
