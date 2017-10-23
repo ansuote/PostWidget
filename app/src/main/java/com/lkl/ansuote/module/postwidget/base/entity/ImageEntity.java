@@ -3,16 +3,18 @@ package com.lkl.ansuote.module.postwidget.base.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by huangdongqiang on 27/09/2017.
  */
-public class ImageEntity implements Parcelable{
+public class ImageEntity implements Serializable{
     private String mPath; //图片图片所在路径
     private String mDir; //图片所在文件夹
     private boolean mChecked;  //是否被选中
     //private boolean mCheckedEnable = true; //是否使能可以选中
 
-    public ImageEntity() {
+/*    public ImageEntity() {
 
     }
 
@@ -48,7 +50,7 @@ public class ImageEntity implements Parcelable{
         dest.writeString(mDir);
         dest.writeInt(mChecked ? 1 : 0);
         //dest.writeInt(mCheckedEnable ? 1 : 0);
-    }
+    }*/
 
     public String getPath() {
         return mPath;

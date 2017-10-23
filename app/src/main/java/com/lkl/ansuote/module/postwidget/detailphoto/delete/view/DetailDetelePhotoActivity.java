@@ -2,12 +2,13 @@ package com.lkl.ansuote.module.postwidget.detailphoto.delete.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BaseMVPActivity;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.AddPhotoActivity;
 import com.lkl.ansuote.module.postwidget.base.Constants;
@@ -16,7 +17,6 @@ import com.lkl.ansuote.module.postwidget.base.widget.HackyViewPager;
 import com.lkl.ansuote.module.postwidget.detailphoto.base.BasePagerAdapter;
 import com.lkl.ansuote.module.postwidget.detailphoto.delete.DetaiDetailPhotoPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -105,7 +105,8 @@ public class DetailDetelePhotoActivity extends BaseMVPActivity<IDetailDeletePhot
         if (null != context) {
             Intent intent = new Intent(context, DetailDetelePhotoActivity.class);
             if (null != intent) {
-                intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST, (ArrayList<? extends Parcelable>) allList);
+                //intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST, (ArrayList<? extends Parcelable>) allList);
+                Utils.writeObjToFile(allList, Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_ALL_LIST));
                 intent.putExtra(Constants.EXTRA_PHOTO_CLICK_POSITION, position);
                 context.startActivity(intent);
             }
@@ -117,6 +118,8 @@ public class DetailDetelePhotoActivity extends BaseMVPActivity<IDetailDeletePhot
         switch (view.getId()) {
             case R.id.btn_delete:
                 showDeletePhotoDialog();
+                break;
+            default:
                 break;
         }
     }

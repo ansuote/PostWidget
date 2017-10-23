@@ -60,15 +60,22 @@ public class TakePhotoManager {
     private void checkCameraPermission(final Activity context) {
         AndPermission.with(mContext)
                 .requestCode(Constants.Permission.REQUEST_CODE_CAMERA)
-                .permission(Permission.STORAGE)
+                .permission(Permission.CAMERA)
                 .callback(new PermissionListener() {
                     @Override
                     public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
                         switch (requestCode) {
                             case Constants.Permission.REQUEST_CODE_CAMERA: {
-                                doTakePhoto();
+                                if (AndPermission.hasPermission(context, Permission.CAMERA)) {
+                                    doTakePhoto();
+                                } else {
+                                    Toast.makeText(context, context.getString(R.string.permission_camera_turn_on_toast), Toast.LENGTH_LONG).show();
+                                    ActivityUtil.startSettingsActivity(context);
+                                }
                                 break;
                             }
+                            default:
+                                break;
                         }
                     }
 
@@ -76,7 +83,7 @@ public class TakePhotoManager {
                     public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
                         switch (requestCode) {
                             case Constants.Permission.REQUEST_CODE_CAMERA: {
-                                if (AndPermission.hasPermission(context, Permission.STORAGE)) {
+                                if (AndPermission.hasPermission(context, Permission.CAMERA)) {
                                     doTakePhoto();
                                 } else {
                                     // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
@@ -90,6 +97,8 @@ public class TakePhotoManager {
                                 }
                                 break;
                             }
+                            default:
+                                break;
                         }
                     }
                 })

@@ -1,8 +1,7 @@
 package com.lkl.ansuote.module.postwidget.detailphoto.choose.view;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BaseMVPActivity;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.AddPhotoActivity;
 import com.lkl.ansuote.module.postwidget.base.Constants;
@@ -20,7 +21,6 @@ import com.lkl.ansuote.module.postwidget.base.widget.HackyViewPager;
 import com.lkl.ansuote.module.postwidget.detailphoto.base.BasePagerAdapter;
 import com.lkl.ansuote.module.postwidget.detailphoto.choose.DetailChoosePhotoPresenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -173,10 +173,12 @@ public class DetailChoosePhotoActivity extends BaseMVPActivity<IDetailChoosePhot
                 break;
             case R.id.layout_bottom:
                 break;
+            default:
+                break;
         }
     }
 
-    public static void actionStart(Context context,
+    public static void actionStart(Activity context,
                                    List<ImageEntity> allList,
                                    int position,
                                    int currentChooseCount,
@@ -185,12 +187,15 @@ public class DetailChoosePhotoActivity extends BaseMVPActivity<IDetailChoosePhot
         if (null != context) {
             Intent intent = new Intent(context, DetailChoosePhotoActivity.class);
             if (null != intent) {
-                intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST, (ArrayList<? extends Parcelable>) allList);
+                //intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST, (ArrayList<? extends Parcelable>) allList);
+                //intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST, (ArrayList<? extends Parcelable>) selectedList);
+                Utils.writeObjToFile(allList, Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_ALL_LIST));
+                Utils.writeObjToFile(selectedList, Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_SELECT_LIST));
+
                 intent.putExtra(Constants.EXTRA_PHOTO_CLICK_POSITION, position);
                 intent.putExtra(Constants.EXTRA_PHOTO_CURRENT_CHOOSE_COUNT, currentChooseCount);
                 intent.putExtra(Constants.EXTRA_PHOTO_MAX_CHOOSE_COUNT, maxChooseCount);
-                intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST, (ArrayList<? extends Parcelable>) selectedList);
-                context.startActivity(intent);
+                context.startActivityForResult(intent, Constants.REQUEST_CODE_CHOOSE_PHOTO);
             }
         }
     }
@@ -223,6 +228,16 @@ public class DetailChoosePhotoActivity extends BaseMVPActivity<IDetailChoosePhot
 
     @Override
     public void finishCurrentActivity() {
-        finish();
+        Intent intent = new Intent();
+        if (null != intent) {
+            intent.putExtra(Constants.EXTRA_FINISH_ACTIVITY, true);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void showChoosePhotoToast() {
+        Toast.makeText(this, getString(R.string.choose_photo_toast), Toast.LENGTH_LONG).show();
     }
 }

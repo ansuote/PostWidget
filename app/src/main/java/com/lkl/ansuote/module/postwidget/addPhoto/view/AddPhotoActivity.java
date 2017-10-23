@@ -2,13 +2,14 @@ package com.lkl.ansuote.module.postwidget.addPhoto.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BaseMVPActivity;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
 import com.lkl.ansuote.hdqlibrary.widget.dialog.base.BaseDialog;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.addPhoto.AddPhotoPresenter;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.postaddimage.entity.PostAddImageEntity;
@@ -19,7 +20,6 @@ import com.lkl.ansuote.module.postwidget.base.entity.ImageEntity;
 import com.lkl.ansuote.module.postwidget.choosephoto.view.ChoosePhotoActivity;
 import com.lkl.ansuote.module.postwidget.detailphoto.delete.view.DetailDetelePhotoActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -145,7 +145,8 @@ public class AddPhotoActivity extends BaseMVPActivity<IAddPhotoView, AddPhotoPre
 
         Intent intent = new Intent(context, AddPhotoActivity.class);
         if (null != intent) {
-            intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST, (ArrayList<? extends Parcelable>) list);
+            //intent.putParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST, (ArrayList<? extends Parcelable>) list);
+            Utils.writeObjToFile(list, Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_SELECT_LIST));
             intent.putExtra(Constants.EXTRA_REQUEST_CODE, type);
             context.startActivity(intent);
         }
@@ -176,12 +177,14 @@ public class AddPhotoActivity extends BaseMVPActivity<IAddPhotoView, AddPhotoPre
                     mPresenter.clickDone();
                 }
                 break;
+            default:
+                break;
         }
     }
 
     @Override
     public void showMustChoosePhotoToast() {
-        Toast.makeText(this, getString(R.string.choose_photo_thoast), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.choose_photo_toast), Toast.LENGTH_LONG).show();
     }
 
     @Override

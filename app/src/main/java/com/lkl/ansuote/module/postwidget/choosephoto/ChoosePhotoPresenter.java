@@ -235,8 +235,13 @@ public class ChoosePhotoPresenter extends BasePresenter<IChoosePhotoView>{
             return;
         }
 
-        getView().startAddPhotoActivity(mSelectedList);
-        getView().finishCurrentActivity();
+        int size = mSelectedList.size();
+        if (size > 0) {
+            getView().startAddPhotoActivity(mSelectedList);
+            getView().finishCurrentActivity();
+        } else {
+            getView().showChoosePhotoToast();
+        }
     }
 
     public void onClickImage(ImageEntity entity, int position) {

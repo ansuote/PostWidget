@@ -25,6 +25,8 @@
     <string name="dialog_delete_photo">Delete?</string>
     <string name="dialog_exit">Are you sure you want to quit？</string>
     <string name="out_storage_unused">External storage is not available</string>
-    <string name="choose_photo_thoast">Please select at least one picture</string>
+    <string name="choose_photo_toast">Please select at least one picture</string>
+
+    <string name="permission_camera_turn_on_toast">Please turn on camera permissions</string>
 
 </resources>

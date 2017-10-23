@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BasePresenter;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.base.Constants;
 import com.lkl.ansuote.module.postwidget.base.entity.ImageEntity;
 import com.lkl.ansuote.module.postwidget.detailphoto.delete.view.IDetailDeletePhotoView;
@@ -24,7 +26,8 @@ public class DetaiDetailPhotoPresenter extends BasePresenter<IDetailDeletePhotoV
     public void initVariables(Bundle savedInstanceState, Intent intent) {
         if (null != intent) {
             mPosition = intent.getIntExtra(Constants.EXTRA_PHOTO_CLICK_POSITION, 0);
-            mAllList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST);
+            //mAllList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST);
+            mAllList = (List<ImageEntity>)Utils.readObjFromFile(Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_ALL_LIST));
             mDirPhotoCount = mAllList.size();
         }
     }

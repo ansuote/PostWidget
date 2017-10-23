@@ -1,5 +1,6 @@
 package com.lkl.ansuote.module.postwidget.choosephoto.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -34,6 +35,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.lkl.ansuote.module.postwidget.base.Constants.REQUEST_CODE_CHOOSE_PHOTO;
 
 
 public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, ChoosePhotoPresenter> implements IChoosePhotoView {
@@ -163,6 +166,11 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
     }
 
     @Override
+    public void showChoosePhotoToast() {
+        Toast.makeText(this, getString(R.string.choose_photo_toast), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void checkStoragePermission() {
         AndPermission.with(this)
                 .requestCode(REQUEST_CODE_PERMISSION_STORAGE)
@@ -229,6 +237,7 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_title_left:
+                finishCurrentActivity();
                 break;
             case R.id.btn_title_right:
                 if (null != mPresenter) {
@@ -239,6 +248,8 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
                 if (null != mPresenter) {
                     mPresenter.clickLayoutBottom();
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -252,6 +263,18 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
                 }
                 break;
             }
+            case REQUEST_CODE_CHOOSE_PHOTO:
+                if (resultCode == Activity.RESULT_OK) {
+                    if (null != data) {
+                        boolean finish = data.getBooleanExtra(Constants.EXTRA_FINISH_ACTIVITY, false);
+                        if (finish) {
+                            finishCurrentActivity();
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
         }
     }
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BasePresenter;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.base.Constants;
 import com.lkl.ansuote.module.postwidget.base.entity.ImageEntity;
 import com.lkl.ansuote.module.postwidget.detailphoto.choose.view.IDetailChoosePhotoView;
@@ -28,11 +30,17 @@ public class DetailChoosePhotoPresenter extends BasePresenter<IDetailChoosePhoto
     public void initVariables(Bundle savedInstanceState, Intent intent) {
         if (null != intent) {
             mPosition = intent.getIntExtra(Constants.EXTRA_PHOTO_CLICK_POSITION, 0);
-            mAllList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST);
+            //mAllList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_LIST);
+            //mSelectedList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
+
+            mAllList = (List<ImageEntity>) Utils.readObjFromFile(Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_ALL_LIST));
+            mSelectedList = (List<ImageEntity>) Utils.readObjFromFile(Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_SELECT_LIST));
+
             mCurrentChooseCount = intent.getIntExtra(Constants.EXTRA_PHOTO_CURRENT_CHOOSE_COUNT, 0);
             mMaxChooseCount = intent.getIntExtra(Constants.EXTRA_PHOTO_MAX_CHOOSE_COUNT, 0);
-            mSelectedList = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
-            mDirPhotoCount = mAllList.size();
+            if (null != mAllList) {
+                mDirPhotoCount = mAllList.size();
+            }
         }
     }
 
@@ -173,6 +181,11 @@ public class DetailChoosePhotoPresenter extends BasePresenter<IDetailChoosePhoto
             }
         }
 
-        getView().startAddPhotoActivity(mSelectedList);
+        if (null != mSelectedList && mSelectedList.size() > 0) {
+            getView().startAddPhotoActivity(mSelectedList);
+            getView().finishCurrentActivity();
+        } else {
+            getView().showChoosePhotoToast();
+        }
     }
 }

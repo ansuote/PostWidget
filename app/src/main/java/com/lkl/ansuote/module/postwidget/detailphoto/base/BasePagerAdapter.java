@@ -29,7 +29,10 @@ public class BasePagerAdapter extends PagerAdapter{
 
     @Override
     public int getCount() {
-        return mList.size();
+        if (null != mList) {
+            return mList.size();
+        }
+        return 0;
     }
 
     @Override

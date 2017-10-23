@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.lkl.ansuote.hdqlibrary.mvp.BasePresenter;
+import com.lkl.ansuote.hdqlibrary.util.Utils;
+import com.lkl.ansuote.module.postwidget.BaseApplication;
 import com.lkl.ansuote.module.postwidget.addPhoto.model.TakePhotoManager;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.AddPhotoActivity;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.IAddPhotoView;
@@ -30,7 +32,9 @@ public class AddPhotoPresenter extends BasePresenter<IAddPhotoView> {
     @Override
     public void initVariables(Bundle savedInstanceState, Intent intent) {
         if (null != intent) {
-            List<ImageEntity> list = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
+            //List<ImageEntity> list = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
+            List<ImageEntity> list = (List<ImageEntity>)Utils.readObjFromFile(Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_SELECT_LIST));
+
             mCurrentImageList = changeToPostAddIamgeList(list);
             mList = getFinalList(mCurrentImageList);
         }
@@ -129,7 +133,8 @@ public class AddPhotoPresenter extends BasePresenter<IAddPhotoView> {
 
     public void onNewIntent(Intent intent) {
         if (null != intent) {
-            List<ImageEntity> list = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
+            //List<ImageEntity> list = intent.getParcelableArrayListExtra(Constants.EXTRA_PHOTO_SELECT_LIST);
+            List<ImageEntity> list = (List<ImageEntity>)Utils.readObjFromFile(Utils.getFilePath(BaseApplication.getInstance(), Constants.PostWidget.FILE_NAME_PHOTO_SELECT_LIST));
 
             mRequestCode = intent.getIntExtra(Constants.EXTRA_REQUEST_CODE, Constants.REQUEST_CODE_ALBUM);
 

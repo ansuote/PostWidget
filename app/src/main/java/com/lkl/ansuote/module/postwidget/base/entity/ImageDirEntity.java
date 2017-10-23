@@ -1,12 +1,13 @@
 package com.lkl.ansuote.module.postwidget.base.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by huangdongqiang on 27/09/2017.
  */
-public class ImageDirEntity {
+public class ImageDirEntity implements Serializable{
     private String mDir;    //当前的目录 /storage/emulated/0/Pictures
     private List<com.lkl.ansuote.module.postwidget.base.entity.ImageEntity> mPathList = new ArrayList<>(); //目录下的图片资源
 

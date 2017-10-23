@@ -79,4 +79,9 @@ public interface IChoosePhotoView {
     void startAddPhotoActivity(List<ImageEntity> selectedList);
 
     void finishCurrentActivity();
+
+    /**
+     * 显示至少选中一张图片的提示
+     */
+    void showChoosePhotoToast();
 }
