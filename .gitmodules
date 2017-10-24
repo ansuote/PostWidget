@@ -1,0 +1,3 @@
+[submodule "hdqlibrary@ansuote"]
+	path = hdqlibrary@ansuote
+	url = git@github.com:ansuote/hdqlibrary.git

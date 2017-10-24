@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PostWidget.iml" filepath="$PROJECT_DIR$/PostWidget.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hdqlibrary/hdqlibrary.iml" filepath="$PROJECT_DIR$/hdqlibrary/hdqlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdqlibrary@ansuote/hdqlibrary@ansuote.iml" filepath="$PROJECT_DIR$/hdqlibrary@ansuote/hdqlibrary@ansuote.iml" />
     </modules>
   </component>
 </project>

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.lkl.ansuote.hdqlibrary.util.ActivityUtil;
@@ -35,9 +36,15 @@ public class TakePhotoManager {
     private static final int DEFAULT_MAX_PHOTO_SIZE = 200000;
     private int mMaxPhotoSize = DEFAULT_MAX_PHOTO_SIZE;  //最大压缩的图片大小
     private OnTakePhotoListener mOnTakePhotoListener;
+    private Fragment mFragment;
 
     public TakePhotoManager(Activity context) {
         this(context, true, DEFAULT_MAX_PHOTO_SIZE);
+    }
+
+    public TakePhotoManager(Fragment fragment) {
+        this(fragment.getActivity());
+        mFragment = fragment;
     }
 
     public TakePhotoManager(Activity context, boolean clipPhotoEnable, int maxPhotoSize) {
@@ -120,13 +127,23 @@ public class TakePhotoManager {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(MediaStore.Images.ImageColumns.ORIENTATION, 0);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTempFile));
-            mContext.startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
+            if (null != mFragment) {
+                mFragment.startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
+            } else {
+                mContext.startActivityForResult(intent, Constants.REQUEST_CODE_CAMERA);
+            }
         } else {
             Toast.makeText(mContext, R.string.out_storage_unused, Toast.LENGTH_LONG).show();
         }
     }
 
 
+    /**
+     * 外层必须调用此方法，才能实现拍照，剪切处理之后的回调
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (null == mContext) {
             return;
@@ -199,7 +216,11 @@ public class TakePhotoManager {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mTempFile));
         //intent.putExtra("outputFormat", "jpg");
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-        mContext.startActivityForResult(intent, Constants.REQUEST_CODE_CROP);
+        if (null != mFragment) {
+            mFragment.startActivityForResult(intent, Constants.REQUEST_CODE_CROP);
+        } else {
+            mContext.startActivityForResult(intent, Constants.REQUEST_CODE_CROP);
+        }
     }
 
     public interface OnTakePhotoListener {
