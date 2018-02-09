@@ -5,13 +5,5 @@
 
 ## 效果预览
 
-### 从相册选择
-![](http://op6c410ta.bkt.clouddn.com/postWidget_video_2_01.gif)
-
-![](http://op6c410ta.bkt.clouddn.com/postWidget_video_2_02.gif)
-
-### 相机拍照
-![](http://op6c410ta.bkt.clouddn.com/postWidget_video_01.gif)
-
 ## 下载
 [点击此处下载demo](http://op6c410ta.bkt.clouddn.com/postWidgetDemo.apk)
