@@ -208,6 +208,8 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
                     }
                     break;
                 }
+                default:
+                    break;
             }
         }
 
@@ -228,6 +230,8 @@ public class ChoosePhotoActivity extends BaseMVPActivity<IChoosePhotoView, Choos
                     }
                     break;
                 }
+                default:
+                    break;
             }
         }
     };

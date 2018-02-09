@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class ChoosePhotoUtil {
     /**
-     * 目录的第一张图片的路径
+     * 目录的第一张图片的路径(拼接前缀)
      * @param imageDirEntity
      * @return
      */
-    public static String getFirstImagePath(ImageDirEntity imageDirEntity) {
+    public static String getFirstImagePathWithPreFile(ImageDirEntity imageDirEntity) {
         String firstImagePath = Constants.PRE_FILE;
         List<ImageEntity> pathList = imageDirEntity.getPathList();
         if (null != pathList && pathList.size() > 0 && null != pathList.get(0)) {
@@ -28,6 +28,20 @@ public class ChoosePhotoUtil {
         }
         return firstImagePath;
     }
+
+    /**
+     * 目录的第一张图片的路径（没有拼接前缀）
+     * @param imageDirEntity
+     * @return
+     */
+    public static String getFirstImagePath(ImageDirEntity imageDirEntity) {
+        List<ImageEntity> pathList = imageDirEntity.getPathList();
+        if (null != pathList && pathList.size() > 0 && null != pathList.get(0)) {
+            return pathList.get(0).getPath();
+        }
+        return "";
+    }
+
 
     /**
      * 获取目录名称

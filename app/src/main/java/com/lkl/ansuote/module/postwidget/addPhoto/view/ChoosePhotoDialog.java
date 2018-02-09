@@ -56,6 +56,8 @@ public class ChoosePhotoDialog implements IBaseDialog {
                 }
                 mBaseDialog.dimiss();
                 break;
+            default:
+                break;
         }
     }
 

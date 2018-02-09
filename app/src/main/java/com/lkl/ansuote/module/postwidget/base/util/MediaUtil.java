@@ -45,7 +45,7 @@ public class MediaUtil {
                             + "=?or "
                             + MediaStore.Images.Media.MIME_TYPE
                             + "=?",
-                    new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED);
+                    new String[]{"image/jpeg", "image/png"}, MediaStore.Images.Media.DATE_MODIFIED + " DESC ");
             if (null != cursor) {
                 while (cursor.moveToNext()) {
                     String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));

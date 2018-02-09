@@ -13,10 +13,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ScreenUtils;
+import com.lkl.ansuote.module.postwidget.GlideApp;
 import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.base.entity.ImageDirEntity;
 import com.lkl.ansuote.module.postwidget.choosephoto.ChoosePhotoUtil;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,8 +133,12 @@ public class ChoosePhotoPopupWindow extends PopupWindow {
             if (null != mList && mList.size() > position) {
                 final ImageDirEntity imageDirEntity = mList.get(position);
                 if (null != imageDirEntity) {
-                    ImageLoader.getInstance().displayImage(ChoosePhotoUtil.getFirstImagePath(imageDirEntity), holder.mImageView);
-                    holder.mDirCountText.setText(String.valueOf(mList.size()));
+                    GlideApp.with(mContext)
+                            .load(ChoosePhotoUtil.getFirstImagePath(imageDirEntity))
+                            .placeholder(R.mipmap.ic_default)
+                            .error(R.mipmap.ic_default)
+                            .into(holder.mImageView);
+                    holder.mDirCountText.setText(String.valueOf(getDirImageCount(imageDirEntity)));
                     holder.mDirText.setText(TextUtils.isEmpty(imageDirEntity.getDir()) ?
                             ChoosePhotoUtil.getDefaultAllImageDirName(mContext)
                             : ChoosePhotoUtil.getDirName(imageDirEntity.getDir()));
@@ -156,7 +160,17 @@ public class ChoosePhotoPopupWindow extends PopupWindow {
             }
         }
 
-
+        /**
+         * 获取目录下的图片数量
+         * @param imageDirEntity
+         * @return
+         */
+        private int getDirImageCount(ImageDirEntity imageDirEntity) {
+            if (null != imageDirEntity && null != imageDirEntity.getPathList()) {
+                return imageDirEntity.getPathList().size();
+            }
+            return 0;
+        }
 
         @Override
         public int getItemCount() {

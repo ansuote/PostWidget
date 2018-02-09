@@ -3,9 +3,9 @@ package com.lkl.ansuote.module.postwidget.addPhoto.view.postaddimage.adpater;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.lkl.ansuote.module.postwidget.GlideApp;
 import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.addPhoto.view.postaddimage.entity.PostAddImageEntity;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -27,13 +27,18 @@ public class PostAddImageAdapter extends CustomDragAndMutiAdapter<PostAddImageEn
 
         switch (helper.getItemViewType()) {
             case PostAddImageEntity.TYPE_IMAGE:
-                //helper.setImageResource(R.id.image, R.mipmap.order_btn_call);
-                ImageLoader.getInstance().displayImage(item.getUrl(), (ImageView) helper.getView(R.id.image));
+                GlideApp.with(mContext)
+                        .load(item.getUrl())
+                        .placeholder(R.mipmap.ic_default)
+                        .error(R.mipmap.ic_default)
+                        .into((ImageView)helper.getView(R.id.image));
                 break;
 
             case PostAddImageEntity.TYPE_BUTTON_ADD:
                 helper.setImageResource(R.id.btn_add, R.mipmap.btn_post_add);
                 //helper.setImageResource(R.id.image, R.mipmap.card_meet);
+                break;
+            default:
                 break;
         }
 

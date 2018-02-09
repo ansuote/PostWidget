@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ImageDirEntity implements Serializable{
     private String mDir;    //当前的目录 /storage/emulated/0/Pictures
-    private List<com.lkl.ansuote.module.postwidget.base.entity.ImageEntity> mPathList = new ArrayList<>(); //目录下的图片资源
+    private List<ImageEntity> mPathList = new ArrayList<>(); //目录下的图片资源
 
     public String getDir() {
         return mDir;

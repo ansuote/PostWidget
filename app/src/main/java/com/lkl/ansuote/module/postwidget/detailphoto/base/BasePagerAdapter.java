@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.lkl.ansuote.module.postwidget.base.Constants;
+import com.lkl.ansuote.module.postwidget.GlideApp;
+import com.lkl.ansuote.module.postwidget.R;
 import com.lkl.ansuote.module.postwidget.base.entity.ImageEntity;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -55,7 +55,11 @@ public class BasePagerAdapter extends PagerAdapter{
                         }
                     }
                 });
-                ImageLoader.getInstance().displayImage(Constants.PRE_FILE + imageEntity.getPath(), photoView);
+                GlideApp.with(container.getContext())
+                        .load(imageEntity.getPath())
+                        .placeholder(R.mipmap.ic_default)
+                        .error(R.mipmap.ic_default)
+                        .into(photoView);
 
                 // Now just add PhotoView to ViewPager and return it
                 container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
