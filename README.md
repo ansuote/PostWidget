@@ -4,7 +4,9 @@
 
 
 ## 效果预览
+### 相机拍照
 ![](http://op6c410ta.bkt.clouddn.com/postWidget_video_01.gif)
+### 从相册选择
 ![](http://op6c410ta.bkt.clouddn.com/postWidget_video_02.gif)
 
 ## 下载
