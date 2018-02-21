@@ -4,6 +4,9 @@
 
 
 ## 效果预览
+![](http://op6c410ta.bkt.clouddn.com/postwidge_240p_02.gif)
+
+![](http://op6c410ta.bkt.clouddn.com/postwidge_240p_01.gif)
 
 ## 下载
 [点击此处下载demo](http://op6c410ta.bkt.clouddn.com/postWidgetDemo.apk)
