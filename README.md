@@ -5,9 +5,10 @@
 
 ## 效果预览
 ### 从相册选择
-![](http://op6c410ta.bkt.clouddn.com/postwidge_240p_02.gif)
-### 从手机拍照
 ![](http://op6c410ta.bkt.clouddn.com/postwidge_240p_01.gif)
+
+### 从手机拍照
+![](http://op6c410ta.bkt.clouddn.com/postwidge_240p_02.gif)
 
 ## 下载
 [点击此处下载demo](http://op6c410ta.bkt.clouddn.com/postWidgetDemo.apk)
